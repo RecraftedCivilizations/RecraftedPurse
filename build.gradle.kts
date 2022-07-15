@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    testImplementation("io.mockk:mockk:+")
     implementation("org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT")
     implementation("org.bukkit:bukkit:1.19-R0.1-SNAPSHO")
 }
