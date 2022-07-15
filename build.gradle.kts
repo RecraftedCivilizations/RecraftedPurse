@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.7.10"
 }
 
 group = "com.github.RecraftedCivilizations"
@@ -9,10 +9,13 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven(url = "https://hub.spigotmc.org/nexus/content/repositories/public/")
 }
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT")
+    implementation("org.bukkit:bukkit:1.19-R0.1-SNAPSHO")
 }
 
 tasks.test {
