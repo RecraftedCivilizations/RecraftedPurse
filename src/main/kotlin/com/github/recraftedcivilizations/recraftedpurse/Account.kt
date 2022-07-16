@@ -1,9 +1,10 @@
 package com.github.recraftedcivilizations.recraftedpurse
 
+import java.util.UUID
 import kotlin.math.roundToInt
 
 
-data class Account(var bankBalance: Int, var purseBalance: Int) {
+data class Account(val accountHolder: UUID, var bankBalance: Int, var purseBalance: Int) {
 
 
     fun depositToBank(amount: Int): Boolean {
