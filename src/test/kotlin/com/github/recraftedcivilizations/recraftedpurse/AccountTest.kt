@@ -86,4 +86,14 @@ internal class AccountTest {
         val account = Account(uuid, 10, 10)
         assertEquals(20, account.value())
     }
+
+    @Test
+    fun asMap() {
+
+        val uuid = UUID.randomUUID()
+        var account = Account(uuid, 10, 10)
+
+        assertEquals(mapOf(Pair("accountHolder", uuid), Pair("purseBalance", 10), Pair("bankBalance", 10)), account.asMap())
+
+    }
 }

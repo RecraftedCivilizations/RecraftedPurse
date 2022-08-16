@@ -52,4 +52,8 @@ data class Account(val accountHolder: UUID, var bankBalance: Int, var purseBalan
     fun value(): Int {
         return this.purseBalance + this.bankBalance
     }
+
+    fun asMap(): Map<String, Any>{
+        return mapOf(Pair("accountHolder", accountHolder), Pair("purseBalance", purseBalance), Pair("bankBalance", bankBalance))
+    }
 }
