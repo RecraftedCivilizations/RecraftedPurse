@@ -1,0 +1,10 @@
+/purse = coin container. Should have the total amount of money somewhere in the interface, and then the ability to withdraw / deposit 1, 5, 10, 25, 50, 100, 250, 500 or 1000 these values correspond to a ‘coin item’ with that value as a description / name. (use golden nuggets as a stand in item for now)
+When you die, 10% of the coins in your purse should be removed.
+
+The bank would be a specific NPC/Chest that you can click and deposit / withdraw coins from. The bank should basically work the same way as /purse but on death should not cause any money to be lost as it’s ‘safe’ in the bank.
+
+All transactions like /pay should only go to the actual bank balance and not the purse. The purse can only be interacted with through the interface with /purse.
+Commands like /pay are only for staff/NPC use as they tie in to how we plan to do jobs and such.
+
+/wealth (player) command to see the full wealth (purse + inventory + bank) of a player
+/wealthtop top 10 wealtht
