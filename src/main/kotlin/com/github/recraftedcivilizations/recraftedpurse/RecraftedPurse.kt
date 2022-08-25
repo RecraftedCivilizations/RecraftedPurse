@@ -9,15 +9,20 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class RecraftedPurse : JavaPlugin() {
     private var vault: Plugin? = null
+    private lateinit var accountManager: AccountManager
 
     override fun onEnable() {
         Bukkit.getLogger().info("Starting RecraftedPurse")
         this.vault = hookPlugin("Vault")
+        accountManager = AccountManager(true, 0.1)
+
+        // Register the account manager as listener for death taxes
+        Bukkit.getPluginManager().registerEvents(accountManager, this)
     }
 
     private fun registerEconomy(){
         if (vault != null){
-            server.servicesManager.register(Economy::class.java, VaultConnector(), this, ServicePriority.Highest)
+            server.servicesManager.register(Economy::class.java, VaultConnector(accountManager), this, ServicePriority.Highest)
             Bukkit.getLogger().info("Registered Vault interface")
         }
 
