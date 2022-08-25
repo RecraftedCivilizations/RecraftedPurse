@@ -50,7 +50,7 @@ class AccountParser(var filePath: String) {
 
         val accMap = account.asMap().toMutableMap()
         accMap.remove("accountHolder")
-        saveMap("$accountSectionName${account.accountHolder}", accMap)
+        saveMap("$accountSectionName.${account.accountHolder}", accMap)
 
         save()
 
