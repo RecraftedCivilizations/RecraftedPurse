@@ -25,6 +25,25 @@ internal class AccountParserTest {
 
     @Test
     fun loadAccount() {
+        val uuid1 = UUID.randomUUID()
+        val account1 = Account(uuid1, 10, 10)
+        val uuid2 = UUID.randomUUID()
+        val account2 = Account(uuid2, 20, 15)
+
+        val accountParser = AccountParser("./")
+
+        dataFile.writeText("accounts:\n" +
+                "  $uuid1:\n" +
+                "    purseBalance: 10\n" +
+                "    bankBalance: 10\n" +
+                "  $uuid2:\n" +
+                "    purseBalance: 15\n" +
+                "    bankBalance: 20\n")
+
+
+
+        assertEquals(account1, accountParser.loadAccount(uuid1))
+        assertEquals(account2, accountParser.loadAccount(uuid2))
 
     }
 
