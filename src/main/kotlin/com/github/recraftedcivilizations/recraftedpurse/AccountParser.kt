@@ -34,7 +34,7 @@ class AccountParser(var filePath: String) {
     fun loadAccount(uuid: UUID): Account?{
         load()
 
-        val configSection = dataFile.getConfigurationSection("$accountSectionName$uuid") ?: return null
+        val configSection = dataFile.getConfigurationSection("$accountSectionName.$uuid") ?: return null
         return configSectionToAccount(configSection, uuid)
 
 
