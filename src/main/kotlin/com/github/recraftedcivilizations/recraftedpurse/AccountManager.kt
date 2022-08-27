@@ -5,7 +5,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 import java.util.UUID
 
-class AccountManager(val isCached: Boolean, val deathTaxAmount: Double): Listener {
+class AccountManager(val isCached: Boolean, val deathTaxAmount: Double, private val accountParser: AccountParser): Listener {
     private var accountsCache: MutableMap<UUID, Account>?
 
     init {
@@ -140,14 +140,14 @@ class AccountManager(val isCached: Boolean, val deathTaxAmount: Double): Listene
     }
 
     private fun loadAccount(uuid: UUID) : Account?{
-        TODO("Missing account parser")
+        return accountParser.loadAccount(uuid)
     }
 
     /**
      * Used to save an account to the data file
      */
     private fun saveAccount(account: Account){
-        TODO("Missing account parser")
+        accountParser.saveAccount(account)
     }
 
     /**
