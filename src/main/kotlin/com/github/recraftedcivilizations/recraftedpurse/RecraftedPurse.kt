@@ -14,7 +14,8 @@ class RecraftedPurse : JavaPlugin() {
     override fun onEnable() {
         Bukkit.getLogger().info("Starting RecraftedPurse")
         this.vault = hookPlugin("Vault")
-        accountManager = AccountManager(true, 0.1)
+        val accountParser = AccountParser("./")
+        accountManager = AccountManager(true, 0.1,  AccountParser("./"))
 
         // Register the account manager as listener for death taxes
         Bukkit.getPluginManager().registerEvents(accountManager, this)
