@@ -109,6 +109,30 @@ internal class AccountManagerTest {
 
     @Test
     fun hasInBank() {
+        val uuid1 = UUID.randomUUID()
+        val uuid2 = UUID.randomUUID()
+        val uuid3 = UUID.randomUUID()
+
+        val account1 = mockk<Account>()
+        val account2 = mockk<Account>()
+        val account3 = mockk<Account>()
+
+        every { accountParser.loadAccount(uuid1) } returns account1
+        every { accountParser.loadAccount(uuid2) } returns account2
+        every { accountParser.loadAccount(uuid3) } returns account3
+
+        every { account1.bankBalance } returns 10
+        every { account2.bankBalance } returns 5
+        every { account3.bankBalance } returns 15
+
+        val accountManager = AccountManager(true, 0.0, accountParser)
+
+        assert(accountManager.hasInBank(uuid1, 10))
+        verify { account1.bankBalance }
+        assert(!accountManager.hasInBank(uuid2, 10))
+        verify { account2.bankBalance }
+        assert(accountManager.hasInBank(uuid3, 10))
+        verify { account3.bankBalance }
     }
 
     @Test
