@@ -50,7 +50,7 @@ class AccountManager(val isCached: Boolean, val deathTaxAmount: Double, private 
         }
     }
 
-    fun hasInPurse(uuid: UUID, amount: Double): Boolean{
+    fun hasInPurse(uuid: UUID, amount: Int): Boolean{
         return if(amount > 0){
             val acc = getAccountOf(uuid)
             acc.purseBalance >= amount
