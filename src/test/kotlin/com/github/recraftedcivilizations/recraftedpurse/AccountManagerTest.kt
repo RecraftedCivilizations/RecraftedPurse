@@ -50,6 +50,30 @@ internal class AccountManagerTest {
 
     @Test
     fun payWithBank() {
+        val uuid1 = UUID.randomUUID()
+        val uuid2 = UUID.randomUUID()
+
+        val account = mockk<Account>()
+        val account2 = mockk<Account>()
+
+        every { accountParser.loadAccount(uuid1) } returns account
+        every { accountParser.loadAccount(uuid2) } returns account2
+
+        every { account.withdrawFromBank(any()) } returns true
+        every { account2.withdrawFromBank(any()) } returns false
+
+        val accountManager = AccountManager(true, 0.0, accountParser)
+
+        // Account has enough money
+        assert(accountManager.payWithBank(uuid1, 10))
+        verify { account.withdrawFromBank(10) }
+
+        // Account doesn't have enough money
+        assert(!accountManager.payWithBank(uuid2, 10))
+        verify { account2.withdrawFromBank(10) }
+
+        verify(exactly = 2) { accountParser.loadAccount(any()) }
+
     }
 
     @Test
