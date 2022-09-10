@@ -51,7 +51,7 @@ class VaultConnector(val accountManager: AccountManager) : Economy {
         return accountManager.hasAccount(uuid)
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("hasAccount(playerName)"))
     override fun hasAccount(playerName: String?, worldName: String?): Boolean {
         return hasAccount(playerName)
     }
@@ -71,7 +71,7 @@ class VaultConnector(val accountManager: AccountManager) : Economy {
         return accountManager.bankBalance(uuid).toDouble()
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("getBalance(playerName)"))
     override fun getBalance(playerName: String?, world: String?): Double {
         return getBalance(playerName)
     }
@@ -137,7 +137,7 @@ class VaultConnector(val accountManager: AccountManager) : Economy {
 
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("withdrawPlayer(playerName, amount)"))
     override fun withdrawPlayer(playerName: String?, worldName: String?, amount: Double): EconomyResponse {
         return withdrawPlayer(playerName, amount)
     }
@@ -181,7 +181,7 @@ class VaultConnector(val accountManager: AccountManager) : Economy {
 
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("depositPlayer(playerName, amount)"))
     override fun depositPlayer(playerName: String?, worldName: String?, amount: Double): EconomyResponse {
         return depositPlayer(playerName, amount)
     }
@@ -260,7 +260,7 @@ class VaultConnector(val accountManager: AccountManager) : Economy {
         return accountManager.hasAccount(uuid)
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("createPlayerAccount(playerName)"))
     override fun createPlayerAccount(playerName: String?, worldName: String?): Boolean {
         return createPlayerAccount(playerName)
     }
