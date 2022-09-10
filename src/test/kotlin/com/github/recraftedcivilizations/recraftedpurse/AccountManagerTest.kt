@@ -1,6 +1,8 @@
 package com.github.recraftedcivilizations.recraftedpurse
 
 import io.mockk.*
+import org.bukkit.entity.Player
+import org.bukkit.event.entity.PlayerDeathEvent
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -247,13 +249,22 @@ internal class AccountManagerTest {
 
     @Test
     fun onPlayerDeath() {
-    }
+        val uuid = UUID.randomUUID()
+        val player = mockk<Player>()
+        val playerDeathEvent = mockk<PlayerDeathEvent>()
+        val account = mockk<Account>()
 
-    @Test
-    fun isCached() {
-    }
+        every { playerDeathEvent.entity } returns player
+        every { player.uniqueId } returns uuid
+        every { accountParser.loadAccount(uuid) } returns account
+        every { account.deathTax(any()) } just runs
 
-    @Test
-    fun getDeathTaxAmount() {
+        val accountManager = AccountManager(true, 1.0, accountParser)
+
+        accountManager.onPlayerDeath(playerDeathEvent)
+
+        verify { account.deathTax(1.0) }
+
+
     }
 }
