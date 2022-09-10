@@ -80,12 +80,16 @@ class AccountManager(val isCached: Boolean, val deathTaxAmount: Double, private 
 
     fun depositToBank(uuid: UUID, amount: Int): Boolean{
         val acc = getAccountOf(uuid)
-        return acc.depositToBank(amount)
+        val res = acc.depositToBank(amount)
+        saveAccountChanges(acc)
+        return res
     }
 
     fun depositToPurse(uuid: UUID, amount: Int): Boolean{
         val acc = getAccountOf(uuid)
-        return acc.depositToPurse(amount)
+        val res = acc.depositToPurse(amount)
+        saveAccountChanges(acc)
+        return res
     }
 
     /**
