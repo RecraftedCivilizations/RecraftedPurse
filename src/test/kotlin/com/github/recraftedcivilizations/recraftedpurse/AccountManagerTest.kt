@@ -232,6 +232,17 @@ internal class AccountManagerTest {
 
     @Test
     fun accountValue() {
+        val uuid = UUID.randomUUID()
+        val account = mockk<Account>()
+
+        every { accountParser.loadAccount(uuid) } returns account
+        every { account.value() } returns 10
+
+        val accountManager = AccountManager(false, 0.0, accountParser)
+
+        assertEquals(10, accountManager.accountValue(uuid))
+        verify { account.value() }
+
     }
 
     @Test
