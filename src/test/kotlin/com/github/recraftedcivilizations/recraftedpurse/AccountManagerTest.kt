@@ -1,8 +1,6 @@
 package com.github.recraftedcivilizations.recraftedpurse
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.*
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -206,6 +204,30 @@ internal class AccountManagerTest {
 
     @Test
     fun hasAccount() {
+
+        val uuid1 = UUID.randomUUID()
+        val uuid2 = UUID.randomUUID()
+
+        val account1 = mockk<Account>()
+
+        every { accountParser.loadAccount(uuid1) } returns account1
+        every { accountParser.loadAccount(uuid2) } returns null
+        every { accountParser.saveAccount(any()) } just runs
+
+        val accountManager = AccountManager(true, 0.0, accountParser)
+
+        assert(accountManager.hasAccount(uuid1))
+        assert(accountManager.hasAccount(uuid2))
+
+        verify { accountParser.saveAccount(Account(uuid2, 0, 0)) }
+
+        val f = accountManager::class.java.getDeclaredField("accountsCache")
+        f.isAccessible = true
+        val cache = f.get(accountManager) as MutableMap<UUID, Account>
+
+        assertEquals(mapOf(Pair(uuid1, account1), Pair(uuid2, Account(uuid2, 0, 0))), cache)
+
+
     }
 
     @Test
