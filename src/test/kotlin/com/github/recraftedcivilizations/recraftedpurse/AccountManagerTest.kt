@@ -169,10 +169,39 @@ internal class AccountManagerTest {
 
     @Test
     fun depositToBank() {
+        val uuid1 = UUID.randomUUID()
+        val uuid2 = UUID.randomUUID()
+        val account = mockk<Account>()
+        val account2 = mockk<Account>()
+
+        every { accountParser.loadAccount(uuid1) } returns account
+        every { accountParser.loadAccount(uuid2) } returns account2
+
+        every { account.depositToBank(any()) } returns true
+        every { account2.depositToBank(any()) } returns false
+
+        val accountManager = AccountManager(true, 0.0, accountParser)
+
+        assert(accountManager.depositToBank(uuid1, 10))
+        assert(!accountManager.depositToBank(uuid2, 10))
+
+        verify { account.depositToBank(any()) }
+        verify { account2.depositToBank(any()) }
+
     }
 
     @Test
     fun depositToPurse() {
+        val uuid1 = UUID.randomUUID()
+        val account = mockk<Account>()
+
+        every { accountParser.loadAccount(uuid1) } returns account
+        every { account.depositToPurse(any()) } returns true
+
+        val accountManager = AccountManager(true, 0.0, accountParser)
+
+        assert(accountManager.depositToPurse(uuid1, 10))
+        verify { account.depositToPurse(any()) }
     }
 
     @Test
