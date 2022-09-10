@@ -137,10 +137,34 @@ internal class AccountManagerTest {
 
     @Test
     fun bankBalance() {
+
+        val uuid = UUID.randomUUID()
+        val account = mockk<Account>()
+
+        every { accountParser.loadAccount(uuid) } returns account
+
+        every { account.bankBalance } returns 10
+
+        val accountManager = AccountManager(true, 0.0, accountParser)
+
+        assertEquals(10, accountManager.bankBalance(uuid))
+        verify { account.bankBalance }
+
     }
 
     @Test
     fun purseBalance() {
+        val uuid = UUID.randomUUID()
+        val account = mockk<Account>()
+
+        every { accountParser.loadAccount(uuid) } returns account
+
+        every { account.purseBalance } returns 10
+
+        val accountManager = AccountManager(true, 0.0, accountParser)
+
+        assertEquals(10, accountManager.purseBalance(uuid))
+        verify { account.purseBalance }
     }
 
     @Test
