@@ -105,10 +105,20 @@ class AccountManager(val isCached: Boolean, val deathTaxAmount: Double, private 
     private fun getAccountOf(uuid: UUID): Account{
 
         // If we have the account cached use it if not try to load it
-        val acc : Account? = if (isCached){
-            accountsCache!![uuid] ?: loadAccount(uuid)
+        var acc: Account?
+        if (isCached){
+            acc = accountsCache!![uuid]
+
+            if(acc == null){
+                acc = loadAccount(uuid)
+                // We loaded the account now cache it
+                if (acc != null){
+                    accountsCache!![uuid] = acc
+                }
+            }
+
         }else{
-            loadAccount(uuid)
+            acc = loadAccount(uuid)
         }
 
         // If acc is null aka if the player doesn't have an acc yet create one
