@@ -106,6 +106,10 @@ class AccountManager(val isCached: Boolean, val deathTaxAmount: Double, private 
         return getAccountOf(uuid).value()
     }
 
+    fun getAllAccounts(): List<Account>{
+        return accountParser.loadAllAccounts()
+    }
+
     private fun getAccountOf(uuid: UUID): Account{
 
         // If we have the account cached use it if not try to load it
