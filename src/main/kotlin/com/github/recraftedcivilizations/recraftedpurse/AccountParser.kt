@@ -31,6 +31,23 @@ class AccountParser(var filePath: String) {
         }
     }
 
+    fun loadAllAccounts(): List<Account>{
+        load()
+        val accounts = emptyList<Account>().toMutableList()
+        val configSection = dataFile.getConfigurationSection(accountSectionName) ?: return emptyList()
+
+        for (uuid in configSection.getKeys(false)){
+            val account = loadAccount(UUID.fromString(uuid))
+            if (account != null) {
+                accounts.add(account)
+            }
+
+        }
+
+        return accounts
+
+    }
+
     fun loadAccount(uuid: UUID): Account?{
         load()
 
