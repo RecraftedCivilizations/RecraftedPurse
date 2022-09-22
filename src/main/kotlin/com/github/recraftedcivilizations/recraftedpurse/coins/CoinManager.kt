@@ -10,7 +10,7 @@ class CoinManager(val coins: List<CoinItem>) {
      * @param itemStack The item stack we want the coin value of
      * @return 0 if not a coin stack else the coin value * amount of coins
      */
-    fun getCoinValue(itemStack: ItemStack): Int{
+    fun getValue(itemStack: ItemStack): Int{
 
         var value: Int = 0
         for (coin in coins){
