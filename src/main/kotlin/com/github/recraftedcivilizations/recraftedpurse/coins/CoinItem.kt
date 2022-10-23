@@ -1,9 +1,9 @@
 package com.github.recraftedcivilizations.recraftedpurse.coins
 
-import com.github.recraftedcivilizations.recraftedpurse.gui.elements.getLore
-import com.github.recraftedcivilizations.recraftedpurse.gui.elements.getName
-import com.github.recraftedcivilizations.recraftedpurse.gui.elements.setLore
-import com.github.recraftedcivilizations.recraftedpurse.gui.elements.setName
+import com.github.recraftedcivilizations.recraftedpurse.getLore
+import com.github.recraftedcivilizations.recraftedpurse.getName
+import com.github.recraftedcivilizations.recraftedpurse.setLore
+import com.github.recraftedcivilizations.recraftedpurse.setName
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
