@@ -56,7 +56,9 @@ class CoinManager(val coins: List<CoinItem>) {
         for (coin in this.coins.sortedBy { it.value }.reversed()){
             val amount: Int = remainder / coin.value
             remainder %= coin.value
-            outputCoins.add(coin.makeCoin(amount))
+            if(amount > 0) {
+                outputCoins.add(coin.makeCoin(amount))
+            }
         }
 
         return outputCoins
