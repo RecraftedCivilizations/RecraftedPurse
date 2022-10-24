@@ -3,20 +3,11 @@ package com.github.recraftedcivilizations.recraftedpurse.gui.elements
 import com.github.recraftedcivilizations.recraftedpurse.gui.Clickable
 import com.github.recraftedcivilizations.recraftedpurse.gui.DisplayItem
 import com.github.recraftedcivilizations.recraftedpurse.gui.GUIManager
+import com.github.recraftedcivilizations.recraftedpurse.setLore
+import com.github.recraftedcivilizations.recraftedpurse.setName
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
-
-fun ItemStack.setName(name: String?){
-    val meta = this.itemMeta
-    meta?.setDisplayName(name)
-    this.itemMeta = meta
-}
-
-fun ItemStack.setLore(vararg lore: String){
-    val meta = this.itemMeta
-    meta?.lore = lore.toMutableList()
-}
 
 /**
  * The factory for the [CloseButton], do not create a close button
