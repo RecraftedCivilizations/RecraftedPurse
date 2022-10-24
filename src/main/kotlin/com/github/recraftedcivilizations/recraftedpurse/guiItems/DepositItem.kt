@@ -10,6 +10,14 @@ import org.bukkit.inventory.ItemStack
 //TODO("Weird things happen if stack size is over 64")
 //TODO("Full inventory???")
 
+
+/**
+ * Deposit a given amount to the purse of a player
+ * @param itemStack The item stack to be displayed as in an inv gui
+ * @param amount The amount of money to deposit on click
+ * @param coinManager The coin manager
+ * @param accountManager The account manager
+ */
 class DepositItem(itemStack: ItemStack, val amount: Int, val coinManager: CoinManager, val accountManager: AccountManager) : Clickable(itemStack) {
 
     override fun onClick(player: Player) {

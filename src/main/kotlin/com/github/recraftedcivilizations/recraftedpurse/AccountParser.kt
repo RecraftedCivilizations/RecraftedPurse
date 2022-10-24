@@ -5,6 +5,10 @@ import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 import java.util.UUID
 
+/**
+ * Parse accounts to and from the data file
+ * @param filePath The file path of the data file
+ */
 class AccountParser(var filePath: String) {
     private val dataFile: YamlConfiguration = YamlConfiguration()
 
@@ -31,6 +35,10 @@ class AccountParser(var filePath: String) {
         }
     }
 
+    /**
+     * Load all accounts in the data file
+     * @return A list of all accounts in the data file
+     */
     fun loadAllAccounts(): List<Account>{
         load()
         val accounts = emptyList<Account>().toMutableList()
@@ -48,6 +56,11 @@ class AccountParser(var filePath: String) {
 
     }
 
+    /**
+     * Load a specific account from the data file
+     * @param uuid The uuid of the account holder to search
+     * @return The account or null if no account exists for this holder
+     */
     fun loadAccount(uuid: UUID): Account?{
         load()
 
@@ -57,12 +70,21 @@ class AccountParser(var filePath: String) {
 
     }
 
+    /**
+     * Parse a config section to an account
+     * @param configurationSection The config section to parse
+     * @return The account
+     */
     private fun configSectionToAccount(configurationSection: ConfigurationSection, uuid: UUID): Account{
         val bankBalance = configurationSection.getInt(bankBalanceName, 0)
         val purseBalance = configurationSection.getInt(purseBalanceName, 0)
         return Account(uuid, bankBalance, purseBalance)
     }
 
+    /**
+     * Save an account to the data file
+     * @param account The account to save
+     */
     fun saveAccount(account: Account){
 
         val accMap = account.asMap().toMutableMap()
@@ -99,10 +121,16 @@ class AccountParser(var filePath: String) {
         }
     }
 
+    /**
+     * Load the datafile
+     */
     private fun load(){
         dataFile.load(filePath)
     }
 
+    /**
+     * Save the datafile
+     */
     private fun save(){
         dataFile.save(filePath)
     }

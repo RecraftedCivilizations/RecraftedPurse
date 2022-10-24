@@ -9,6 +9,11 @@ import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import java.util.UUID
 
+/**
+ * Shows the wealth in bank account and purse of a given player
+ * @param accountManager The account manager
+ * @param currencySymbol The symbol of the currency(gets added behind the value)
+ */
 class Wealth(private val accountManager: AccountManager, private val currencySymbol: String) : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {

@@ -7,6 +7,11 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 
+/**
+ * Shows the top given number of player or top 10 if nothing given with the most wealth
+ * @param accountManager The account manager
+ * @param currencySymbol The currency symbol(gets added behind the amount)
+ */
 class WealthTop(private val accountManager: AccountManager, private val currencySymbol: String) : CommandExecutor{
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
 

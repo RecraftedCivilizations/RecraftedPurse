@@ -3,6 +3,10 @@ package com.github.recraftedcivilizations.recraftedpurse.coins
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
+/**
+ * Manage everything that has to do with coins
+ * @param coins A list of coins that are available in game
+ */
 class CoinManager(val coins: List<CoinItem>) {
 
     /**

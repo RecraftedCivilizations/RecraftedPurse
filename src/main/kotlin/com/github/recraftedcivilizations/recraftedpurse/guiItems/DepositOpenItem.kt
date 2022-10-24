@@ -9,6 +9,12 @@ import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
+/**
+ * Open a gui with different amounts to deposit to the purse
+ * @param itemStack The item stack to be displayed as in an inv gui
+ * @param coinManager The coin manager
+ * @param accountManager The account manager
+ */
 class DepositOpenItem(itemStack: ItemStack, private val coinManager: CoinManager, private val accountManager: AccountManager) : Clickable(itemStack) {
     private val depositGUI = InventoryGUI(9, "Deposit")
 
